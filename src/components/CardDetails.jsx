@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
-import ReactImageMagnify from "react-image-magnify";
+import Zoom from "react-medium-image-zoom";
+import 'react-medium-image-zoom/dist/styles.css';
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -9,26 +10,25 @@ const CardDetails = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch product from API
-useEffect(() => {
-  const fetchProduct = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const res = await axios.get(`https://ecommerce-backend-theta-pink.vercel.app/api/products/${id}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      setProduct(res.data); // Assuming your API returns a single product object
-    } catch (error) {
-      console.error('Error fetching product:', error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const res = await axios.get(`https://ecommerce-backend-theta-pink.vercel.app/api/products/${id}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setProduct(res.data);
+      } catch (error) {
+        console.error('Error fetching product:', error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  fetchProduct();
-}, [id]);
+    fetchProduct();
+  }, [id]);
 
   if (loading) {
     return <div className="text-white p-6 bg-[#1e293b] min-h-screen">Loading...</div>;
@@ -48,28 +48,15 @@ useEffect(() => {
         {/* Product Image */}
         <div className="w-full lg:w-1/2 bg-gray-100 p-6 flex items-center justify-center">
           <div className="w-80">
-            <ReactImageMagnify
-              {...{
-                smallImage: {
-                  alt: product.title,
-                  width: 320,
-                  height: 320,
-                  src: product.image,
-                },
-                largeImage: {
-                  src: product.image,
-                  width: 1200,
-                  height: 1200,
-                },
-                enlargedImageContainerDimensions: {
-                  width: "250%",
-                  height: "150%",
-                },
-                enlargedImagePosition: "beside",
-                lensStyle: { backgroundColor: "rgba(0,0,0,0.2)" },
-                shouldUsePositiveSpaceLens: true,
-              }}
-            />
+            <Zoom>
+              <img
+                alt={product.title}
+                src={product.image}
+                width={320}
+                height={320}
+                className="rounded-lg"
+              />
+            </Zoom>
           </div>
         </div>
 
