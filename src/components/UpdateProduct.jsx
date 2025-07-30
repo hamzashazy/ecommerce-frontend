@@ -19,6 +19,7 @@ const UpdateProduct = () => {
 
   const handleFetch = async () => {
     try {
+      const token = localStorage.getItem('token');
       const res = await axios.get(`https://ecommerce-backend-theta-pink.vercel.app/api/products/${productId}`, {
     headers: {
       Authorization: `Bearer ${token}`
