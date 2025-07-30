@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/ecommerce-project/static/css/main.2356851f.css",
+    "main.js": "/ecommerce-project/static/js/main.8bb11da0.js",
+    "static/media/man.jpeg": "/ecommerce-project/static/media/man.2b03a2cadb12e4073059.jpeg",
+    "index.html": "/ecommerce-project/index.html",
+    "main.2356851f.css.map": "/ecommerce-project/static/css/main.2356851f.css.map",
+    "main.8bb11da0.js.map": "/ecommerce-project/static/js/main.8bb11da0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2356851f.css",
+    "static/js/main.8bb11da0.js"
+  ]
+}
